@@ -1,4 +1,5 @@
-// dumb
+// dumb program
+// simply following instructions and learning/relearning syntax
 
 #include<iostream>
 #include<windows.h>
@@ -30,13 +31,13 @@ int main() {
         cout << "Process ID: " << GetCurrentProcessId() << endl;
         cout << endl;
 
-        cout << "varint        (0x" << &varInt << ") = " << varInt << endl;
-        cout << "varstring     (0x" << &varString << ") = " << varString << endl;
-        cout << "arrChar[128]  (0x" << &arrChar << ") = " << arrChar << endl;
+        cout << "varint        (0x" << hex << uppercase << (uintptr_t)&varInt << ") = " << dec << varInt << endl;
+        cout << "varstring     (0x" << hex << uppercase << (uintptr_t)&varString << ") = " << varString << endl;
+        cout << "arrChar[128]  (0x" << hex << uppercase << (uintptr_t)&arrChar << ") = " << arrChar << endl;
         cout << endl;
-        cout << "ptr2int       (0x" << &ptr2int << ") = 0x" << ptr2int << endl;
-        cout << "ptr2ptr       (0x" << &ptr2ptr << ") = 0x" << ptr2ptr << endl;
-        cout << "ptr2ptr2      (0x" << &ptr2ptr2 << ") = 0x" << ptr2ptr2 << endl;
+        cout << "ptr2int       (0x" << hex << uppercase << (uintptr_t)&ptr2int << ") = " << ptr2int << endl;
+        cout << "ptr2ptr       (0x" << hex << uppercase << (uintptr_t)&ptr2ptr << ") = " << ptr2ptr << endl;
+        cout << "ptr2ptr2      (0x" << hex << uppercase << (uintptr_t)&ptr2ptr2 << ") = " << ptr2ptr2 << endl;
         cout << endl;
 
         // Press ENTER to print again.
