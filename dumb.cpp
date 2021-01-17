@@ -56,19 +56,21 @@ int main() {
         cout << endl;
 
         // Press ENTER to print again.
-        cout << "Press ENTER to print again." << endl;
+        cout << "Enter \"y\" or \"yes\" to exit loop." << endl;
         // getchar();
         cin >> input;
-        cout << "input: " << input << endl;
+        // cout << "input: " << input << endl;
         // cout << "input == \"y\" >> " << (input == "y") << endl;
         cout << endl << "--------------------------------------------------" << endl << endl;
 
-        if(input == "y") {
+        if(input == "y" || input == "yes") {
             loop = false;
         };
 
 
     } while(loop == true);
+
+    // this logic needs to be added to external file
 
     // attempts to fetch handle based on current process id
     // if process handle returns null, throw error
