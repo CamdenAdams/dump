@@ -9,5 +9,6 @@ using namespace std;
 int main() {
 
     // code...
+    int num = 0;
 
 }
