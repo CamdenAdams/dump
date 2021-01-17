@@ -1,6 +1,8 @@
 // dumb program
 // simply following instructions and learning/relearning syntax
 
+// dumb and atk need to be different files, build getPidByName
+
 #include<iostream>
 #include<windows.h>
 #include<string>
@@ -14,19 +16,32 @@ int main() {
     const int oneTwoEight = 128;
     bool loop = true;
 
-    // Variables
+    // DWORD unsigned integer
+    // WORD is the most natural size of a memory pointer
+    // DWORD (double word) 32 bit
+    // other random notes:
+        // BYTE 8 bit
+        // WORD 16 bit
+        // QWORD (quad word) 64 bit
+    DWORD dumbPid = GetCurrentProcessId(); 
+    SIZE_T bytesRead = 0;
+
+    // target variables
     int varInt = 123456;
     string varString = "DefaultString";
     char arrChar[CHAR_ARRAY_SIZE] = "Long char array right there ->";
 
-    // Pointers
+    // target pointers
     int *ptr2int = &varInt;
     int **ptr2ptr = &ptr2int;
     int ***ptr2ptr2 = &ptr2ptr;
 
+    // atk variables
+    int intRead = 0;
 
+    do {
 
-    while(loop = true) {
+        string input;
 
         cout << "Process ID: " << GetCurrentProcessId() << endl;
         cout << endl;
@@ -41,11 +56,41 @@ int main() {
         cout << endl;
 
         // Press ENTER to print again.
-        cout << "Press ENTER to print again.";
-        getchar();
+        cout << "Press ENTER to print again." << endl;
+        // getchar();
+        cin >> input;
+        cout << "input: " << input << endl;
+        // cout << "input == \"y\" >> " << (input == "y") << endl;
         cout << endl << "--------------------------------------------------" << endl << endl;
 
-    }
+        if(input == "y") {
+            loop = false;
+        };
+
+
+    } while(loop == true);
+
+    // attempts to fetch handle based on current process id
+    // if process handle returns null, throw error
+    HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, false, dumbPid);
+    if(hProcess == NULL) {
+        cout << "OpenProcess failed to set handle." << endl;
+        cout << "GetLastError() = " << GetLastError() << endl;
+        getchar();
+        return EXIT_FAILURE;
+    };
+
+    // A "buffer" simply means a place in memory.
+    BOOL rpmReturn = ReadProcessMemory(hProcess, (LPCVOID)&varInt, &intRead, sizeof(int), &bytesRead);
+    if(rpmReturn == FALSE) {
+        cout << "ReadProcessMemory failed to read value at " << hex << uppercase << (uintptr_t)&varInt << endl;
+        getchar();
+        return EXIT_FAILURE;
+    };
+
+    cout << "intRead = " << dec << intRead << endl;
+    cout << "Press any key to exit" << endl;
+    getchar();
 
     return 0;
 }
