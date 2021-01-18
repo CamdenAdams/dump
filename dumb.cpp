@@ -65,7 +65,7 @@ int main() {
 
         if(input == "y" || input == "yes") {
             loop = false;
-        };
+        }
 
 
     } while(loop == true);
