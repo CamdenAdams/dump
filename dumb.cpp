@@ -56,41 +56,43 @@ int main() {
         cout << endl;
 
         // Press ENTER to print again.
-        cout << "Press ENTER to print again." << endl;
+        cout << "Enter \"y\" or \"yes\" to exit loop." << endl;
         // getchar();
         cin >> input;
-        cout << "input: " << input << endl;
+        // cout << "input: " << input << endl;
         // cout << "input == \"y\" >> " << (input == "y") << endl;
         cout << endl << "--------------------------------------------------" << endl << endl;
 
-        if(input == "y") {
+        if(input == "y" || input == "yes") {
             loop = false;
-        };
+        }
 
 
     } while(loop == true);
 
+    // this logic needs to be added to external file
+
     // attempts to fetch handle based on current process id
     // if process handle returns null, throw error
-    HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, false, dumbPid);
-    if(hProcess == NULL) {
-        cout << "OpenProcess failed to set handle." << endl;
-        cout << "GetLastError() = " << GetLastError() << endl;
-        getchar();
-        return EXIT_FAILURE;
-    };
+    // HANDLE hProcess = OpenProcess(PROCESS_ALL_ACCESS, false, dumbPid);
+    // if(hProcess == NULL) {
+    //     cout << "OpenProcess failed to set handle." << endl;
+    //     cout << "GetLastError() = " << GetLastError() << endl;
+    //     getchar();
+    //     return EXIT_FAILURE;
+    // };
 
-    // A "buffer" simply means a place in memory.
-    BOOL rpmReturn = ReadProcessMemory(hProcess, (LPCVOID)&varInt, &intRead, sizeof(int), &bytesRead);
-    if(rpmReturn == FALSE) {
-        cout << "ReadProcessMemory failed to read value at " << hex << uppercase << (uintptr_t)&varInt << endl;
-        getchar();
-        return EXIT_FAILURE;
-    };
+    // // A "buffer" simply means a place in memory.
+    // BOOL rpmReturn = ReadProcessMemory(hProcess, (LPCVOID)&varInt, &intRead, sizeof(int), &bytesRead);
+    // if(rpmReturn == FALSE) {
+    //     cout << "ReadProcessMemory failed to read value at " << hex << uppercase << (uintptr_t)&varInt << endl;
+    //     getchar();
+    //     return EXIT_FAILURE;
+    // };
 
-    cout << "intRead = " << dec << intRead << endl;
-    cout << "Press any key to exit" << endl;
-    getchar();
+    // cout << "intRead = " << dec << intRead << endl;
+    // cout << "Press any key to exit" << endl;
+    // getchar();
 
     return 0;
 }
