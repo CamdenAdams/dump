@@ -1,9 +1,11 @@
-// I am tired of writing the same function repeatedly so I'm creating a file that can be included and the function can be refereced!
+// I am tired of writing the same function repeatedly so I'm creating a header file!
+// https://docs.microsoft.com/en-us/cpp/cpp/header-files-cpp?view=msvc-160
 
 // REVISIT HEADER GUARD
 
 #include<iostream>
 #include<windows.h>
+
 
 
 HANDLE returnProcessHandleByProcessID(DWORD pID) {
